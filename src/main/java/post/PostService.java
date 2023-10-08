@@ -17,4 +17,9 @@ public class PostService {
         postRepository.save(post);
         return new PostId(post.getPostId());
     }
+
+    public PostDto readPost(PostId postId){
+        Post post = postRepository.findByPostId(postId.getPostId());
+        return Post.entityToDto(post);
+    }
 }
