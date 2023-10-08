@@ -1,6 +1,7 @@
 package post;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import post.dto.PostDto;
@@ -15,7 +16,8 @@ public class PostController {
         this.postService = postService;
     }
 
-    public ResponseEntity<PostId> creatPos(@RequestBody PostDto postDto){
+    @PostMapping
+    public ResponseEntity<PostId> creatPost(@RequestBody PostDto postDto){
         PostId postId = postService.createPost(postDto);
         return ResponseEntity.ok(postId);
     }
