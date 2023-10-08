@@ -2,6 +2,7 @@ package post;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import post.dto.PostDto;
 
 @Entity
 public class Post {
@@ -32,4 +33,7 @@ public class Post {
         return new Post(postId,title,body);
     }
 
+    public static PostDto entityToDto(Post post){
+        return new PostDto(post.postId,post.title,post.body);
+    }
 }

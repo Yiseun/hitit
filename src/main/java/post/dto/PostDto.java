@@ -7,6 +7,12 @@ public class PostDto {
 
     public PostDto(){}
 
+    public PostDto(Long postId,String title,String body){
+        this.postId = postId;
+        this.title = title;
+        this.body = body;
+    }
+
     public Long getPostId(){
         return this.postId;
     }

@@ -1,9 +1,7 @@
 package post;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import post.dto.PostDto;
 import post.dto.PostId;
 
@@ -20,5 +18,11 @@ public class PostController {
     public ResponseEntity<PostId> creatPost(@RequestBody PostDto postDto){
         PostId postId = postService.createPost(postDto);
         return ResponseEntity.ok(postId);
+    }
+
+    @GetMapping("/{postId}")
+    public ResponseEntity<PostDto> readPost(@PathVariable PostId postId){
+        PostDto postDto = postService.readPost(postId);
+        return ResponseEntity.ok(postDto);
     }
 }
