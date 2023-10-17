@@ -1,8 +1,8 @@
-package post;
+package hitit.post;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import post.dto.PostDto;
+import hitit.post.dto.PostDto;
 
 @Entity
 public class Post {

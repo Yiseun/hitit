@@ -1,4 +1,4 @@
-package post.dto;
+package hitit.post.dto;
 
 public class PostDto {
     private Long postId;
