@@ -1,7 +1,7 @@
 package hitit.hit.spring;
 
 import hitit.hit.dto.request.HitRequest;
-import hitit.hit.dto.request.TotalHitRequest;
+import hitit.hit.dto.response.HitResponse;
 import hitit.hit.dto.response.TotalHitResponse;
 import hitit.hit.moderator.HitModerator;
 import org.slf4j.Logger;
@@ -18,8 +18,8 @@ public class HitService {
         this.hitRepository = hitRepository;
     }
 
-    public TotalHitResponse totalHitResponse(final TotalHitRequest totalHitRequest){
-        return TotalHitResponse.from((hitRepository.findById(totalHitRequest.getUrlId()).orElseThrow()));
+    public HitResponse dailyAndTotalHitRead(final HitRequest HitRequest){
+        return HitResponse.from((hitRepository.findById(HitRequest.getUrlId()).orElseThrow()));
     }
     public void hitIncrease(final HitRequest hitRequest) throws InterruptedException {
          HitModerator.assignTask(hitRequest);
