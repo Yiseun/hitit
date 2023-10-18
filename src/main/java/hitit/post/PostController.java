@@ -1,9 +1,9 @@
-package post;
+package hitit.post;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import post.dto.PostDto;
-import post.dto.PostId;
+import hitit.post.dto.PostDto;
+import hitit.post.dto.PostId;
 
 @RestController
 public class PostController {

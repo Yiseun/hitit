@@ -1,8 +1,8 @@
-package post;
+package hitit.post;
 
 import org.springframework.stereotype.Service;
-import post.dto.PostDto;
-import post.dto.PostId;
+import hitit.post.dto.PostDto;
+import hitit.post.dto.PostId;
 
 @Service
 public class PostService {
