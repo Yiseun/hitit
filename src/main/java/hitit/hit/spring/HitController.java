@@ -22,9 +22,9 @@ public class HitController {
         this.hitService = hitService;
     }
 
-    @GetMapping("/total/{url}")
-    public ResponseEntity<HitResponse> dailyAndTotalHitRead(@RequestParam Long totalurl){
-        HitRequest dailyAndTotalHitRequest = new HitRequest(totalurl);
+    @GetMapping("/hit/{url}")
+    public ResponseEntity<HitResponse> dailyAndTotalHitRead(@RequestParam Long url){
+        HitRequest dailyAndTotalHitRequest = new HitRequest(url);
         HitResponse hitResponse = hitService.dailyAndTotalHitRead(dailyAndTotalHitRequest);
         return ResponseEntity.ok(hitResponse);
     }
