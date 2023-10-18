@@ -1,24 +1,20 @@
-package hitit.hit.entity;
+package hitit.hit.spring.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import org.hibernate.annotations.ColumnDefault;
-
-import java.util.UUID;
 
 @Entity
 public class Hit {
 
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @ColumnDefault("UUID()")
     @Id
+    @Column(name = "url_Id")
     private Long urlId;
+    @Column(name = "hit")
     private Long hit;
+    @Column(name = "total_hit")
     private Long totalHit;
 
-    //현재조회수는 현재에 맞는 dailyHit에서 검색
 
     protected Hit(){}
 
@@ -28,16 +24,19 @@ public class Hit {
     public Long getHit(){
         return this.getHit();
     }
-    public static Hit addHit(Hit hit){
-        return new Hit(hit.urlId,hit.totalHit+1, hit.totalHit+1);
-    }
-    public static Hit initAllHit(Hit hit){
-        return new Hit(hit.urlId,0L, 0L);
-    }
-    public static Hit initHit(Hit hit){return new Hit(hit.urlId,0L,hit.totalHit);}
+
+    //
     public Hit(Long urlId,Long hit,Long totalHit){
         this.urlId = urlId;
         this.hit = hit;
         this.totalHit = totalHit;
     }
+    public static Hit addHit(Hit hit){
+        return new Hit(hit.urlId,hit.totalHit+1, hit.totalHit+1);
+    }
+    public static Hit initAllHit(Long urlId){
+        return new Hit(urlId,0L, 0L);
+    }
+    public static Hit initHit(Hit hit){return new Hit(hit.urlId,0L,hit.totalHit);}
+
 }
