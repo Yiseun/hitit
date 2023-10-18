@@ -10,12 +10,12 @@ public class HitService {
     private final HitRepository hitRepository;
     private final Logger log = LoggerFactory.getLogger(HitService.class);
 
-    private HitService(final HitRepository hitRepository,final HitDemo hitDemo){
+    private HitService(final HitRepository hitRepository){
         this.hitRepository = hitRepository;
     }
-    public void count(final String url) throws InterruptedException {
+    public void count(final HitRequest hitRequest) throws InterruptedException {
         log.info("arrive HitService");
-        HitModerator.assignTask(url);
+         HitModerator.assignTask(hitRequest);
         log.info("finish HitService");
     }
 }

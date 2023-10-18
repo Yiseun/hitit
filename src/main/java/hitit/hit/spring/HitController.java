@@ -19,10 +19,12 @@ public class HitController {
         this.hitService = hitService;
     }
 
-    @GetMapping
-    public ResponseEntity<Void> inC(@RequestParam String url) throws InterruptedException {
+    @GetMapping("/")
+    public ResponseEntity<Void> inC(@RequestParam Long url) throws InterruptedException {
         log.info("arrive HitController");
-        hitService.count(url);
+        HitRequest hitRequest = new HitRequest(url);
+        System.out.println(hitRequest.getCreatedDate());
+        hitService.count(hitRequest);
         log.info("finish HitController");
         return ResponseEntity.noContent().build();
     }
