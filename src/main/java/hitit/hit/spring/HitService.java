@@ -1,5 +1,7 @@
-package hitit.hit;
+package hitit.hit.spring;
 
+import hitit.hit.dto.request.HitRequest;
+import hitit.hit.moderator.HitModerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -13,9 +15,7 @@ public class HitService {
     private HitService(final HitRepository hitRepository){
         this.hitRepository = hitRepository;
     }
-    public void count(final HitRequest hitRequest) throws InterruptedException {
-        log.info("arrive HitService");
+    public void hitIncrease(final HitRequest hitRequest) throws InterruptedException {
          HitModerator.assignTask(hitRequest);
-        log.info("finish HitService");
     }
 }
