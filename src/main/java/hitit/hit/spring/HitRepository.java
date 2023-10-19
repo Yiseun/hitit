@@ -1,4 +1,4 @@
-package hitit.hit;
+package hitit.hit.spring;
 
 import hitit.hit.entity.Hit;
 import org.springframework.data.jpa.repository.JpaRepository;

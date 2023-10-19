@@ -1,6 +1,6 @@
 package hitit.hit.dto.response;
 
-import hitit.hit.spring.entity.Hit;
+import hitit.hit.entity.Hit;
 
 public class HitResponse {
     private Long urlId;

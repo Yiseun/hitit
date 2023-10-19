@@ -1,15 +1,20 @@
-package hitit.hit.spring.entity;
+package hitit.hit.entity;
 
+import hitit.hit.moderator.HitModerator;
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
+@Table(name = "daily_hits")
 public class DailyHits {
 
     @Id
     @Column(name = "daily_hits_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @ColumnDefault("UUID()")
     private UUID dailyHitsId;
     @Column(name = "url_id")
     private Long urlId;
@@ -21,7 +26,6 @@ public class DailyHits {
     protected DailyHits(){}
 
     private DailyHits(Long urlId,LocalDate date,Long dateHit){
-        this.dailyHitsId = UUID.randomUUID();
         this.urlId = urlId;
         this.date = date;
         this.dateHit = dateHit;
@@ -29,5 +33,8 @@ public class DailyHits {
 
     public static DailyHits of(Long urlId,LocalDate date, Long dateHit){
         return new DailyHits(urlId,date,dateHit);
+    }
+    public static DailyHits from(Hit hit){
+        return new DailyHits(hit.getUrlId(), HitModerator.getServerTime(),hit.getHit());
     }
 }
