@@ -2,7 +2,6 @@ package hitit.hit.spring;
 
 import hitit.hit.dto.request.HitRequest;
 import hitit.hit.dto.response.HitResponse;
-import hitit.hit.dto.response.TotalHitResponse;
 import hitit.hit.moderator.HitModerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
