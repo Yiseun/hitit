@@ -31,6 +31,16 @@ public class DailyHits {
         this.dateHit = dateHit;
     }
 
+    public Long getUrlId(){
+        return this.urlId;
+    }
+    public LocalDate getDate(){
+        return this.date;
+    }
+    public Long getDateHit(){
+        return this.dateHit;
+    }
+
     public static DailyHits of(Long urlId,LocalDate date, Long dateHit){
         return new DailyHits(urlId,date,dateHit);
     }
