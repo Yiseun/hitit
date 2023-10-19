@@ -1,5 +1,6 @@
 package hitit.hit.spring.entity;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -25,7 +26,8 @@ public class Hit {
         return this.getHit();
     }
 
-    //
+    public Long getTotalHit(){return this.getTotalHit();}
+
     public Hit(Long urlId,Long hit,Long totalHit){
         this.urlId = urlId;
         this.hit = hit;

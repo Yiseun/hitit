@@ -1,6 +1,7 @@
 package hitit.hit.spring;
 
 import hitit.hit.dto.request.HitRequest;
+import hitit.hit.dto.response.HitResponse;
 import hitit.hit.moderator.HitModerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +16,14 @@ public class HitService {
     private HitService(final HitRepository hitRepository){
         this.hitRepository = hitRepository;
     }
+
+
+    public HitResponse dailyAndTotalHitRead(final HitRequest HitRequest){
+        return HitResponse.from((hitRepository.findById(HitRequest.getUrlId()).orElseThrow()));
+    }
     public void hitIncrease(final HitRequest hitRequest) throws InterruptedException {
          HitModerator.assignTask(hitRequest);
     }
+
+
 }

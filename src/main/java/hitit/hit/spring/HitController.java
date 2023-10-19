@@ -1,6 +1,7 @@
 package hitit.hit.spring;
 
 import hitit.hit.dto.request.HitRequest;
+import hitit.hit.dto.response.HitResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,14 @@ public class HitController {
         this.hitService = hitService;
     }
 
-    @GetMapping("/")
+
+    @GetMapping("/hit/{url}")
+    public ResponseEntity<HitResponse> dailyAndTotalHitRead(@RequestParam Long url){
+        HitRequest dailyAndTotalHitRequest = new HitRequest(url);
+        HitResponse hitResponse = hitService.dailyAndTotalHitRead(dailyAndTotalHitRequest);
+        return ResponseEntity.ok(hitResponse);
+    }
+    @GetMapping("/{url}")
     public ResponseEntity<Void> hitIncrease(@RequestParam Long url) throws InterruptedException {
         HitRequest hitRequest = new HitRequest(url);
         hitService.hitIncrease(hitRequest);
