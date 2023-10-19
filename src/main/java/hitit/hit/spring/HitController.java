@@ -21,7 +21,7 @@ public class HitController {
         this.hitService = hitService;
     }
 
-    @GetMapping("/hit/{url}")
+    @GetMapping("/read/{url}")
     public ResponseEntity<HitResponse> dailyAndTotalHitRead(@RequestParam Long url){
         HitRequest dailyAndTotalHitRequest = new HitRequest(url);
         HitResponse hitResponse = hitService.dailyAndTotalHitRead(dailyAndTotalHitRequest);
