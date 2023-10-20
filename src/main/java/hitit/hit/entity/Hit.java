@@ -25,7 +25,7 @@ public class Hit {
         return this.hit;
     }
 
-    public Long getTotalHit(){return this.getTotalHit();}
+    public Long getTotalHit(){return this.totalHit;}
     public Hit(Long urlId,Long hit,Long totalHit){
         this.urlId = urlId;
         this.hit = hit;
