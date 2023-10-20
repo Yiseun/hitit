@@ -22,6 +22,7 @@ public class HitResponse {
     public Long getTotalHit(){
         return this.totalHit;
     }
+  
     public static HitResponse from(Hit hit){
         return new HitResponse(hit.getUrlId(),hit.getHit(),hit.getTotalHit());
     }

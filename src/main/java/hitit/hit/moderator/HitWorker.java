@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+
 public class HitWorker implements Runnable{
     private final Logger log = LoggerFactory.getLogger(HitWorker.class);
     private static HitWorker instance;
@@ -28,6 +29,7 @@ public class HitWorker implements Runnable{
         this.entityManager = entityManager;
         this.workerType = workerType;
     }
+
 
 
     @Override
