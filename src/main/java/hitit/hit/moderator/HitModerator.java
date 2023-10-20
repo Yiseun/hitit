@@ -36,6 +36,7 @@ public class HitModerator {
     }
 
     private synchronized static void detectChange(){
+
         LocalDate now = LocalDate.now();
         if(Objects.equals(serverTime, now)){
             return;

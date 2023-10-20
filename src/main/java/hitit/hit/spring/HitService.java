@@ -17,13 +17,11 @@ public class HitService {
         this.hitRepository = hitRepository;
     }
 
-
     public HitResponse dailyAndTotalHitRead(final HitRequest HitRequest){
         return HitResponse.from((hitRepository.findById(HitRequest.getUrlId()).orElseThrow()));
     }
     public void hitIncrease(final HitRequest hitRequest) throws InterruptedException {
          HitModerator.assignTask(hitRequest);
     }
-
 
 }

@@ -1,6 +1,7 @@
 package hitit.hit.dto.response;
 
-import hitit.hit.spring.entity.Hit;
+
+import hitit.hit.entity.Hit;
 
 public class HitResponse {
     private Long urlId;
@@ -11,6 +12,17 @@ public class HitResponse {
         this.urlId = urlId;
         this.hit = hit;
         this.totalHit = totalHit;
+    }
+
+
+    public Long getUrlId(){
+        return this.urlId;
+    }
+    public Long getHit(){
+        return this.hit;
+    }
+    public Long getTotalHit(){
+        return this.totalHit;
     }
 
     public static HitResponse from(Hit hit){
