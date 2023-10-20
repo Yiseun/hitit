@@ -34,49 +34,56 @@ public class HitWorker implements Runnable{
 
     @Override
     public void run() {
-
             if(workerType.getWorkerNum()==1){
-              EntityTransaction transaction = entityManager.getTransaction();
-              try {
-                transaction.begin();
-                CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-                CriteriaQuery<Hit> criteriaQuery = criteriaBuilder.createQuery(Hit.class);
-                Root<Hit> hit = criteriaQuery.from(Hit.class);
-                criteriaQuery.select(hit);
-                TypedQuery<Hit> query = entityManager.createQuery(criteriaQuery);
-                List<Hit> hits = query.getResultList();
-                hits.forEach(hitt -> {
-                    entityManager.persist(DailyHits.from(hitt));
-                    entityManager.merge(Hit.initHit(hitt));
-                        }
-                );
-                  transaction.commit();
-              }catch (Exception e){
-                  transaction.rollback();
-              }finally {
-                  entityManager.close();
-              }
+              operationInit();
             }else {
-                HitRequest nowTask = HitModerator.getAssignment();
-                HitModerator.assignmentCountMinus();
-              if(nowTask!=null) {
-                    EntityTransaction transaction = entityManager.getTransaction();
-                try {
-                    transaction.begin();
-                    Hit hit = entityManager.find(Hit.class, nowTask.getUrlId());
-                    if(hit==null){
-                        hit = Hit.initAllHit(nowTask.getUrlId());
-                    }
-                    Hit newHit = Hit.addHit(hit);
-                    entityManager.merge(newHit);
-                    transaction.commit();
-                } catch (Exception e) {
-                    transaction.rollback();
-                }finally {
-                    entityManager.close();
-                }
-              }
+             operationTask();
             }
+    }
+
+    private void operationInit(){
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+            CriteriaQuery<Hit> criteriaQuery = criteriaBuilder.createQuery(Hit.class);
+            Root<Hit> hit = criteriaQuery.from(Hit.class);
+            criteriaQuery.select(hit);
+            TypedQuery<Hit> query = entityManager.createQuery(criteriaQuery);
+            List<Hit> hits = query.getResultList();
+            hits.forEach(hitt -> {
+                        entityManager.persist(DailyHits.from(hitt));
+                        entityManager.merge(Hit.initHit(hitt));
+                    }
+            );
+            transaction.commit();
+        }catch (Exception e){
+            transaction.rollback();
+        }finally {
+            entityManager.close();
+        }
+    }
+
+    private void operationTask(){
+        HitRequest nowTask = HitModerator.getAssignment();
+        HitModerator.assignmentCountMinus();
+        if(nowTask!=null) {
+            EntityTransaction transaction = entityManager.getTransaction();
+            try {
+                transaction.begin();
+                Hit hit = entityManager.find(Hit.class, nowTask.getUrlId());
+                if(hit==null){
+                    hit = Hit.initAllHit(nowTask.getUrlId());
+                }
+                Hit newHit = Hit.addHit(hit);
+                entityManager.merge(newHit);
+                transaction.commit();
+            } catch (Exception e) {
+                transaction.rollback();
+            }finally {
+                entityManager.close();
+            }
+        }
     }
 
 

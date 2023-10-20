@@ -1,6 +1,5 @@
 package hitit.hit.dto.response;
 
-
 import hitit.hit.entity.Hit;
 
 public class HitResponse {
@@ -14,7 +13,6 @@ public class HitResponse {
         this.totalHit = totalHit;
     }
 
-
     public Long getUrlId(){
         return this.urlId;
     }
@@ -24,7 +22,7 @@ public class HitResponse {
     public Long getTotalHit(){
         return this.totalHit;
     }
-
+  
     public static HitResponse from(Hit hit){
         return new HitResponse(hit.getUrlId(),hit.getHit(),hit.getTotalHit());
     }
