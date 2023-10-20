@@ -4,7 +4,6 @@ import hitit.hit.dto.request.HitRequest;
 import hitit.hit.entity.DailyHits;
 import hitit.hit.entity.Hit;
 import hitit.hit.type.WorkerType;
-import hitit.post.Post;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -14,9 +13,7 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
-import java.awt.*;
 import java.util.List;
 
 public class HitWorker implements Runnable{
@@ -36,12 +33,6 @@ public class HitWorker implements Runnable{
 
     @Override
     public void run() {
-
-        //이거 operation 2에 있어야할듯
-        HitRequest nowTask = HitModerator.getAssignment();
-        HitModerator.assignmentCountMinus();
-
-        //nowTask가 비어서 initializer가 진입하지못함
 
             if(workerType.getWorkerNum()==1){
               EntityTransaction transaction = entityManager.getTransaction();
@@ -65,6 +56,8 @@ public class HitWorker implements Runnable{
                   entityManager.close();
               }
             }else {
+                HitRequest nowTask = HitModerator.getAssignment();
+                HitModerator.assignmentCountMinus();
               if(nowTask!=null) {
                     EntityTransaction transaction = entityManager.getTransaction();
                 try {
